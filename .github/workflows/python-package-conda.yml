@@ -28,8 +28,12 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-
-      # 步骤 4: 运行爬虫并调用 AI 模型进行总结
+          
+      - name: Install Playwright browsers
+        run: |
+          python -m playwright install  # 安装 Playwright 所需的浏览器
+          
+        # 步骤 4: 运行爬虫并调用 AI 模型进行总结
       - name: Run the script
         run: |
           python main.py  # 将 `your_script_name.py` 替换为你的 Python 脚本名称
