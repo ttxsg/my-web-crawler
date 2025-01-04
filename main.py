@@ -2,6 +2,9 @@ import asyncio
 from crawl4ai import AsyncWebCrawler, CacheMode
 import re
 import google.generativeai as genai
+# 从环境变量中读取 API 密钥
+api_key = os.getenv("GOOGLE_API_KEY")
+genai.configure(api_key=api_key)
 
 async def main():
     async with AsyncWebCrawler(verbose=True) as crawler:
@@ -21,11 +24,14 @@ async def main():
         else:
             body = "未找到正文部分"
         
-        # 调用Google生成AI模型进行总结
-        genai.configure(api_key="YOUR_API_KEY")
-        model = genai.GenerativeModel("gemini-1.5-flash")
-        response = model.generate_content(body)  # 将文章传递给AI模型进行总结
-        print(text_content)
+        # 通过 Google Gemini 模型生成总结
+        try:
+            model = genai.GenerativeModel("gemini-1.5-flash")
+            summary_response = model.generate_content(f"Summarize the following news: {body}")
+            print("\n总结：")
+            print(summary_response.text)
+        except Exception as e:
+            print(f"生成总结时出错: {e}")
 
 # 使用 asyncio.run 启动异步任务
 if __name__ == "__main__":
