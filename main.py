@@ -96,9 +96,9 @@ for url, subject in urls:
                 email_content = f"以下是爬取到的{subject}数据：\n\n"
                 for idx, hotspot in enumerate(hotspots, 1):
                     email_content += f"热点 {idx}:\n"
-                    email_content += f"标题: {hotspot['title']}\n"
+                    email_content += f" {hotspot['title']}\n"
                     email_content += f"链接: {hotspot['link']}\n"
-                    email_content += f"访问量: {hotspot['views']}\n"
+                    # email_content += f"访问量: {hotspot['views']}\n"
 
                     # 调用异步函数生成总结
                     summary = asyncio.run(generate_summary(hotspot['link']))
