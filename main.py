@@ -25,7 +25,7 @@ async def main():
         genai.configure(api_key="YOUR_API_KEY")
         model = genai.GenerativeModel("gemini-1.5-flash")
         response = model.generate_content(body)  # 将文章传递给AI模型进行总结
-        print(response.text)
+        print(text_content)
 
 # 使用 asyncio.run 启动异步任务
 if __name__ == "__main__":
