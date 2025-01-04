@@ -20,7 +20,8 @@ genai.configure(api_key=api_key)
 
 # 定义需要爬取的网址和对应的主题
 urls = [
-    ("https://tophub.today/n/Q1Vd5Ko85R", "36K数据"),
+    ("https://tophub.today/n/WnBe01o371", "微信热榜数据"),
+    ("https://tophub.today/n/Q1Vd5Ko85R", "36K数据")
 ]
 
 # 定义生成总结的异步函数
@@ -33,7 +34,8 @@ async def generate_summary(url: str):
 
         # 正则表达式提取从第一个标题到“36氪经授权发布”之前的所有正文内容
         # text_content = re.findall(r'##?.*?([\s\S]+?)(?=36氪经授权发布)', raw_markdown)
-        text_content = re.findall(r'##?\s?.*?([\s\S]+?)(?=36氪经授权发布|原创出品|(?=##))', raw_markdown)
+        # text_content = re.findall(r'##?\s?.*?([\s\S]+?)(?=36氪经授权发布|原创出品|(?=##))', raw_markdown)
+        text_content = re.findall(r'##?\s?.*?([\s\S]+?)(?=36氪经授权发布|原创出品|轻触阅读原文|(?=##))', raw_markdown)
         if text_content:
             body = "\n".join(text_content).strip()
         else:
