@@ -1,2 +1,7 @@
 crawl4ai
 google-generativeai
+requests
+beautifulsoup4 
+deep-translator 
+yagmail 
+PyEmail
