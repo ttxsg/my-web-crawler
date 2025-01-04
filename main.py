@@ -1,6 +1,7 @@
 import asyncio
 from crawl4ai import AsyncWebCrawler, CacheMode
 import re
+import os
 import google.generativeai as genai
 # 从环境变量中读取 API 密钥
 api_key = os.getenv("GOOGLE_API_KEY")
