@@ -9,10 +9,7 @@ from crawl4ai import AsyncWebCrawler
 import re
 import google.generativeai as genai
 
-# 邮件发送配置
-sender_email = "386857251@qq.com"  # 替换为你的 QQ 邮箱地址
-sender_password = "qosozmmhfzyybhgi"  # 替换为你的 QQ 授权码（应用专用密码）
-recipient_email = "zhengxinlilili@gmail.com"  # 替换为接收方的 Gmail 邮箱
+
 
 # 从环境变量中读取邮件配置
 sender_email = os.getenv("SENDER_EMAIL")
