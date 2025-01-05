@@ -35,7 +35,11 @@ jobs:
           
         # 步骤 4: 运行爬虫并调用 AI 模型进行总结
       - name: Run the script
+          
         run: |
           python main.py  # 将 `your_script_name.py` 替换为你的 Python 脚本名称
         env:
           GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}  # 使用 GitHub Secrets 存储 API 密钥
+          SENDER_EMAIL: ${{ secrets.SENDER_EMAIL }}
+          SENDER_PASSWORD: ${{ secrets.SENDER_PASSWORD }}
+          RECIPIENT_EMAIL: ${{ secrets.RECIPIENT_EMAIL }}
