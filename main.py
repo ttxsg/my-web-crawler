@@ -14,6 +14,11 @@ sender_email = "386857251@qq.com"  # 替换为你的 QQ 邮箱地址
 sender_password = "qosozmmhfzyybhgi"  # 替换为你的 QQ 授权码（应用专用密码）
 recipient_email = "zhengxinlilili@gmail.com"  # 替换为接收方的 Gmail 邮箱
 
+# 从环境变量中读取邮件配置
+sender_email = os.getenv("SENDER_EMAIL")
+sender_password = os.getenv("SENDER_PASSWORD")
+recipient_email = os.getenv("RECIPIENT_EMAIL")
+
 # 从环境变量中读取 API 密钥
 api_key = os.getenv("GOOGLE_API_KEY")
 genai.configure(api_key=api_key)
