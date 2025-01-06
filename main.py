@@ -23,7 +23,8 @@ genai.configure(api_key=api_key)
 # 定义需要爬取的网址和对应的主题
 urls = [
     ("https://tophub.today/n/WnBe01o371", "微信热榜数据"),
-    ("https://tophub.today/n/Q1Vd5Ko85R", "36K数据")
+    ("https://tophub.today/n/Q1Vd5Ko85R", "36K数据"),
+    ("https://tophub.today/n/Y2KeDGQdNP","少数派")
 ]
 
 # 定义生成总结的异步函数
@@ -99,8 +100,8 @@ for url, subject in urls:
             if hotspots:
                 email_content = f"以下是爬取到的{subject}数据：\n\n"
                 for idx, hotspot in enumerate(hotspots, 1):
-                    email_content += f"热点 {idx}:\n"
-                    email_content += f" {hotspot['title']}\n"
+                    email_content += f"## 热点 {idx}: {hotspot['title']}\n"
+
                     email_content += f"链接: {hotspot['link']}\n"
                     # email_content += f"访问量: {hotspot['views']}\n"
 
