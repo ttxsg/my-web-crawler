@@ -24,7 +24,9 @@ genai.configure(api_key=api_key)
 urls = [
     ("https://tophub.today/n/WnBe01o371", "微信热榜数据"),
     ("https://tophub.today/n/Q1Vd5Ko85R", "36K数据"),
-    ("https://tophub.today/n/Y2KeDGQdNP","少数派")
+    ("https://tophub.today/n/Y2KeDGQdNP","少数派"),
+    ("https://tophub.today/n/NKGoRAzel6", "吾爱破解热榜数据"),
+    ("https://tophub.today/n/WYKd6jdaPj", "豆瓣小组数据")
 ]
 
 # 定义生成总结的异步函数
