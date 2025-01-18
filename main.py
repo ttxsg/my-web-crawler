@@ -16,6 +16,11 @@ sender_email = os.getenv("SENDER_EMAIL")
 sender_password = os.getenv("SENDER_PASSWORD")
 recipient_email = os.getenv("RECIPIENT_EMAIL")
 
+# 多个收件人邮箱地址列表
+recipient_emails = [
+    "zhengxinlilili@gmail.com",
+    "2310100910@qq.com"
+]
 # 从环境变量中读取 API 密钥
 api_key = os.getenv("GOOGLE_API_KEY")
 genai.configure(api_key=api_key)
@@ -49,7 +54,7 @@ async def generate_summary(url: str):
         # 通过 Google Gemini 模型生成总结
         try:
             model = genai.GenerativeModel("gemini-1.5-flash")
-            summary_response = model.generate_content(f"用中文总结下面的文章: {body}")
+            summary_response = model.generate_content(f"用中文总结下面的文章,排除网页元素的内容: {body}")
             return summary_response.text
         except Exception as e:
             print(f"生成总结时出错: {e}")
@@ -122,19 +127,22 @@ for url, subject in urls:
     # 创建邮件对象
     message = MIMEMultipart()
     message["From"] = sender_email
-    message["To"] = recipient_email
+    # message["To"] = recipient_email
+    # 将收件人列表转换为逗号分隔的字符串
+    message["To"] = ", ".join(recipient_emails)
     message["Subject"] = f"{subject}"
 
     # 附加文本内容
     message.attach(MIMEText(email_content, "plain", "utf-8"))
 
+    # 邮件发送
     try:
         # 连接到 QQ 的 SMTP 服务器
         with smtplib.SMTP("smtp.qq.com", 587) as server:
             server.starttls()  # 启用加密传输
             server.login(sender_email, sender_password)  # 登录
-            server.sendmail(sender_email, recipient_email, message.as_string())  # 发送邮件
-
+            server.sendmail(sender_email, recipient_emails, message.as_string())  # 发送邮件
+    
         print(f"邮件发送成功！({subject})")
     except Exception as e:
         print(f"邮件发送失败: {e}")
