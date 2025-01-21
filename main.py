@@ -16,6 +16,10 @@ sender_email = os.getenv("SENDER_EMAIL")
 sender_password = os.getenv("SENDER_PASSWORD")
 recipient_email = os.getenv("RECIPIENT_EMAIL")
 recipient_email2 = os.getenv("RECIPIENT_EMAIL2")
+recipient_emails = [
+    os.getenv("RECIPIENT_EMAIL1"),
+    os.getenv("RECIPIENT_EMAIL2")
+]
 
 # 从环境变量中读取 API 密钥
 api_key = os.getenv("GOOGLE_API_KEY")
@@ -125,8 +129,7 @@ for url, subject in urls:
     message["From"] = sender_email
     # message["To"] = recipient_email
     # 将收件人列表转换为逗号分隔的字符串
-    # message["To"] = ", ".join(recipient_emails)
-    recipient_emails = [recipient_email, recipient_email2]
+    
     message["To"] = ", ".join(recipient_emails)
     message["Subject"] = f"{subject}"
 
