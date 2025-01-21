@@ -15,12 +15,12 @@ import google.generativeai as genai
 sender_email = os.getenv("SENDER_EMAIL")
 sender_password = os.getenv("SENDER_PASSWORD")
 recipient_email = os.getenv("RECIPIENT_EMAIL")
-
+recipient_email2 = os.getenv("RECIPIENT_EMAIL2")
 # 多个收件人邮箱地址列表
-recipient_emails = [
-    "zhengxinlilili@gmail.com",
-    "2310100910@qq.com"
-]
+# recipient_emails = [
+#     "zhengxinlilili@gmail.com",
+#     "2310100910@qq.com"
+# ]
 # 从环境变量中读取 API 密钥
 api_key = os.getenv("GOOGLE_API_KEY")
 genai.configure(api_key=api_key)
@@ -129,7 +129,7 @@ for url, subject in urls:
     message["From"] = sender_email
     # message["To"] = recipient_email
     # 将收件人列表转换为逗号分隔的字符串
-    message["To"] = ", ".join(recipient_emails)
+    # message["To"] = ", ".join(recipient_emails)
     message["Subject"] = f"{subject}"
 
     # 附加文本内容
@@ -141,7 +141,19 @@ for url, subject in urls:
         with smtplib.SMTP("smtp.qq.com", 587) as server:
             server.starttls()  # 启用加密传输
             server.login(sender_email, sender_password)  # 登录
-            server.sendmail(sender_email, recipient_emails, message.as_string())  # 发送邮件
+            server.sendmail(sender_email, recipient_email, message.as_string())  # 发送邮件
+    
+        print(f"邮件发送成功！({subject})")
+    except Exception as e:
+        print(f"邮件发送失败: {e}")
+
+    # 邮件发送
+    try:
+        # 连接到 QQ 的 SMTP 服务器
+        with smtplib.SMTP("smtp.qq.com", 587) as server:
+            server.starttls()  # 启用加密传输
+            server.login(sender_email, sender_password)  # 登录
+            server.sendmail(sender_email, recipient_email2, message.as_string())  # 发送邮件
     
         print(f"邮件发送成功！({subject})")
     except Exception as e:
