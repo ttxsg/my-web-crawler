@@ -130,7 +130,7 @@ for url, subject in urls:
     # message["To"] = recipient_email
     # 将收件人列表转换为逗号分隔的字符串
     
-    message["To"] = ", ".join(recipient_emails)
+    message["To"] = ",".join(recipient_emails)
     message["Subject"] = f"{subject}"
 
     # 附加文本内容
