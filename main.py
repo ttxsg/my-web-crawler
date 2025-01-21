@@ -126,13 +126,15 @@ for url, subject in urls:
     # message["To"] = recipient_email
     # 将收件人列表转换为逗号分隔的字符串
     # message["To"] = ", ".join(recipient_emails)
+    recipient_emails = [recipient_email, recipient_email2]
+    message["To"] = ", ".join(recipient_emails)
     message["Subject"] = f"{subject}"
 
     # 附加文本内容
     message.attach(MIMEText(email_content, "plain", "utf-8"))
-    recipient_emails = [recipient_email, recipient_email2]
+    
     # 将收件人列表转换为逗号分隔的字符串
-    message["To"] = ", ".join(recipient_emails)
+    
     # 邮件发送
     try:
         # 连接到 QQ 的 SMTP 服务器
