@@ -18,7 +18,7 @@ recipient_email = os.getenv("RECIPIENT_EMAIL")
 recipient_email2 = os.getenv("RECIPIENT_EMAIL2")
 recipient_emails = [
     os.getenv("RECIPIENT_EMAIL"),
-    2310100910@qq.com
+    "2310100910@qq.com"
 ]
 
 # 从环境变量中读取 API 密钥
