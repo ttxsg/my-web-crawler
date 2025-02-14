@@ -16,6 +16,8 @@ sender_email = os.getenv("SENDER_EMAIL")
 sender_password = os.getenv("SENDER_PASSWORD")
 recipient_email = os.getenv("RECIPIENT_EMAIL")
 recipient_email2 = os.getenv("RECIPIENT_EMAIL2")
+appid = os.getenv("APPID_WX")
+appsecret = os.getenv("APPSECRET_WX")
 recipient_emails = [
     os.getenv("RECIPIENT_EMAIL"),
     "2310100910@qq.com"
@@ -108,7 +110,7 @@ for url, subject in urls:
                 for idx, hotspot in enumerate(hotspots, 1):
                     # 使用HTML格式化，标题带样式
                     email_content += f"""
-                    <div style='font-size:24px; color:#2F4F4F; background-color:#e0f7fa; border-radius:10px; padding:10px; display:inline-block;'>
+                    <div style='font-size:24px; color:#2F4F4F; background-color:#e0f7fa; border-radius:6px; padding:6px; display:inline-block;'>
                         <b>{idx}: {hotspot['title']}</b>
                     </div><br>
                     """
@@ -128,7 +130,39 @@ for url, subject in urls:
             email_content = f"未找到{subject}目标表格"
     else:
         email_content = f"请求失败，状态码: {response.status_code}"
-
+    # 请求数据
+    data = {
+        "secret": "your-secret-key",
+        "action": "draft",
+        "appid": appid,
+        "appsecret": appsecret,
+        "draft": {
+            "articles": [
+                {
+                    "article_type": "news",
+                    "title": "Test Draft Title",
+                    "digest": "This is a test draft for WeChat API",
+                    "content": email_content,  # 这里赋值
+                    "thumb_media_id": 0,
+                    "need_open_comment": 0,
+                    "only_fans_can_comment": 0,
+                }
+            ]
+        }
+    }
+    # 请求 Cloudflare Workers 服务
+    url = "https://lingering-base-ecf8.zhengxinlilili.workers.dev/"  # Cloudflare Worker 的 URL
+    response = requests.post(url, json=data)
+    
+    # 处理响应
+    if response.status_code == 200:
+        result = response.json()
+        if 'message' in result:
+            print(result['message'])
+        else:
+            print("Failed to create draft.")
+    else:
+        print(f"Failed to create draft. Status Code: {response.status_code}")
     # 创建邮件对象
     message = MIMEMultipart()
     message["From"] = sender_email
