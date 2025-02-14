@@ -46,3 +46,5 @@ jobs:
           SENDER_EMAIL: ${{ secrets.SENDER_EMAIL }}
           SENDER_PASSWORD: ${{ secrets.SENDER_PASSWORD }}
           RECIPIENT_EMAIL: ${{ secrets.RECIPIENT_EMAIL }}
+          APPID_WX: ${{ secrets.APPID_WX }}
+          APPSECRET_WX: ${{ secrets.APPSECRET_WX }}
