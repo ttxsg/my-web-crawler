@@ -107,7 +107,7 @@ for url, subject in urls:
             if hotspots:
                 for idx, hotspot in enumerate(hotspots, 1):
                   # 使用HTML格式化，标题带样式
-                  email_content += f"<font style='font-size:24px; color:#333333; text-decoration:underline;'><b>热点 {idx}: {hotspot['title']}</b></font><br>"
+                  email_content += f"<font style='font-size:24px; color:#333333; text-decoration:underline;'><b>{idx}: {hotspot['title']}</b></font><br>"
                   
                   # 链接带样式
                   email_content += f"<font style='font-size:16px; color:#0066cc;'>链接: <a href='{hotspot['link']}' target='_blank'>{hotspot['link']}</a></font><br>"
