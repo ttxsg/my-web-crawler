@@ -107,10 +107,14 @@ for url, subject in urls:
             if hotspots:
                 for idx, hotspot in enumerate(hotspots, 1):
                     # 使用HTML格式化，标题带样式
-                    email_content += f"<font style='font-size:24px; color:#333333; text-decoration:underline;'><b>{idx}: {hotspot['title']}</b></font><br>"
+                    email_content += f"""
+                    <div style='font-size:24px; color:#2F4F4F; background-color:#e0f7fa; border-radius:10px; padding:10px; display:inline-block;'>
+                        <b>{idx}: {hotspot['title']}</b>
+                    </div><br>
+                    """
                   
                     # 链接带样式
-                    email_content += f"<font style='font-size:16px; color:#0066cc;'>链接: <a href='{hotspot['link']}' target='_blank'>{hotspot['link']}</a></font><br>"
+                    email_content += f"<font style='font-size:16px; color:#FF6347;'>链接: <a href='{hotspot['link']}' target='_blank'>{hotspot['link']}</a></font><br>"
   
                     # 调用异步函数生成总结
                     summary = asyncio.run(generate_summary(hotspot['link']))
