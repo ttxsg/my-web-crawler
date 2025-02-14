@@ -29,11 +29,11 @@ genai.configure(api_key=api_key)
 
 # 定义需要爬取的网址和对应的主题
 urls = [
-    ("https://tophub.today/n/Q1Vd5Ko85R", "36K数据"),
-    ("https://tophub.today/n/WnBe01o371", "微信热榜数据"),
-    ("https://tophub.today/n/Y2KeDGQdNP","少数派"),
-    ("https://tophub.today/n/NKGoRAzel6", "吾爱破解热榜数据"),
-    ("https://tophub.today/n/WYKd6jdaPj", "豆瓣小组数据")
+    ("https://tophub.today/n/Q1Vd5Ko85R", "前沿科技 AI 速览：36K 热点全梳理),
+    ("https://tophub.today/n/WnBe01o371", "这些内容最容易10万+？AI 盘点今日爆款话题"),
+    ("https://tophub.today/n/Y2KeDGQdNP","好用不踩雷，少数派热门科技与工具推荐"),
+    ("https://tophub.today/n/NKGoRAzel6", "解锁实用利器：吾爱破解今日热门软件与工具分享"),
+    ("https://tophub.today/n/WYKd6jdaPj", "豆瓣小组精选每日更新：今天的有趣分")
 ]
 
 # 定义生成总结的异步函数
@@ -110,7 +110,7 @@ for url, subject in urls:
                 for idx, hotspot in enumerate(hotspots, 1):
                     # 使用HTML格式化，标题带样式
                     email_content += f"""
-                    <div style='font-size:24px; color:#2F4F4F; background-color:#e0f7fa; border-radius:6px; padding:6px 12px; display:inline-block; max-width: 60%;'>
+                    <div style='font-size:24px; color:#2F4F4F; background-color:#e0f7fa; border-radius:6px; padding:6px 6px; display:inline-block;  width: fit-content; text-align: left;'>
                         <b>{idx}: {hotspot['title']}</b>
                     </div><br>
                     """
@@ -140,8 +140,8 @@ for url, subject in urls:
             "articles": [
                 {
                     "article_type": "news",
-                    "title": "Test Draft Title",
-                    "digest": "This is a test draft for WeChat API",
+                    "title": subject,
+                    "digest": subject,
                     "content": email_content,  # 这里赋值
                     "thumb_media_id": 0,
                     "need_open_comment": 0,
