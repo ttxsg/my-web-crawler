@@ -56,7 +56,7 @@ async def generate_summary(url: str):
         # 通过 Google Gemini 模型生成总结
         try:
             model = genai.GenerativeModel("gemini-1.5-flash")
-            summary_response = model.generate_content(f"用中文总结下面的文章,排除网页元素和网站信息等无关内容,最终给我html格式的总结: {body}")
+            summary_response = model.generate_content(f"用中文总结下面的文章,排除网页元素和网站信息等无关内容,最终给我html格式的总结，其中我不需要标题，重点内容，你可以给颜色样式，我不需要开头的```html 和结尾的```: 根据下面的内容开始进行{body}")
             return summary_response.text
         except Exception as e:
             print(f"生成总结时出错: {e}")
@@ -117,7 +117,7 @@ for url, subject in urls:
                     summary = asyncio.run(generate_summary(hotspot['link']))
                   
                     # 总结部分带样式
-                    email_content += f"<font style='font-size:16px; color:#333333;'>总结: <span style='font-style:italic;'>{summary}</span></font><br>"
+                    email_content += f"<font style='font-size:16px; color:#333333;'>总结: {summary}</span></font><br>"
                     email_content += '<hr style="border: 1px solid #ccc; margin: 20px 0;">'  # 使用水平线分隔不同热点数据
             else:
                 email_content = f"没有找到任何{subject}热点信息"
