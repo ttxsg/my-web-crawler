@@ -29,8 +29,8 @@ genai.configure(api_key=api_key)
 
 # 定义需要爬取的网址和对应的主题
 urls = [
-    ("https://tophub.today/n/WnBe01o371", "微信热榜数据"),
     ("https://tophub.today/n/Q1Vd5Ko85R", "36K数据"),
+    ("https://tophub.today/n/WnBe01o371", "微信热榜数据"),
     ("https://tophub.today/n/Y2KeDGQdNP","少数派"),
     ("https://tophub.today/n/NKGoRAzel6", "吾爱破解热榜数据"),
     ("https://tophub.today/n/WYKd6jdaPj", "豆瓣小组数据")
@@ -110,7 +110,7 @@ for url, subject in urls:
                 for idx, hotspot in enumerate(hotspots, 1):
                     # 使用HTML格式化，标题带样式
                     email_content += f"""
-                    <div style='font-size:24px; color:#2F4F4F; background-color:#e0f7fa; border-radius:6px; padding:6px; display:inline-block;'>
+                    <div style='font-size:24px; color:#2F4F4F; background-color:#e0f7fa; border-radius:6px; padding:6px 12px; display:inline-block; max-width: 60%;'>
                         <b>{idx}: {hotspot['title']}</b>
                     </div><br>
                     """
