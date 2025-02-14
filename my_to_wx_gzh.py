@@ -29,7 +29,7 @@ genai.configure(api_key=api_key)
 
 # 定义需要爬取的网址和对应的主题
 urls = [
-    ("https://tophub.today/n/Q1Vd5Ko85R", "前沿科技 AI 速览：36K 热点全梳理),
+    ("https://tophub.today/n/Q1Vd5Ko85R", "前沿科技 AI 速览：36K 热点全梳理"),
     ("https://tophub.today/n/WnBe01o371", "这些内容最容易10万+？AI 盘点今日爆款话题"),
     ("https://tophub.today/n/Y2KeDGQdNP","好用不踩雷，少数派热门科技与工具推荐"),
     ("https://tophub.today/n/NKGoRAzel6", "解锁实用利器：吾爱破解今日热门软件与工具分享"),
