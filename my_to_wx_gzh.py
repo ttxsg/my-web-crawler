@@ -110,7 +110,7 @@ for url, subject in urls:
                 for idx, hotspot in enumerate(hotspots, 1):
                     # 使用HTML格式化，标题带样式
                     email_content += f"""
-                    <div style='font-size:24px; color:#2F4F4F; background-color:#e0f7fa; border-radius:3px; padding:3px 3px; display:block;  width: 100%; text-align: left;'>
+                    <div style='font-size:24px; color:#2F4F4F; background-color:#e0f7fa; border-radius:3px; padding:3px; display:block;  width: 100%; text-align: left;margin: 0;'>
                         <b>{idx}: {hotspot['title']}</b>
                     </div><br>
                     """
