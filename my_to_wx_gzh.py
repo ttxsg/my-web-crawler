@@ -106,19 +106,19 @@ for url, subject in urls:
             # 输出爬取到的数据
             if hotspots:
                 for idx, hotspot in enumerate(hotspots, 1):
-                  # 使用HTML格式化，标题带样式
-                  email_content += f"<font style='font-size:24px; color:#333333; text-decoration:underline;'><b>{idx}: {hotspot['title']}</b></font><br>"
+                    # 使用HTML格式化，标题带样式
+                    email_content += f"<font style='font-size:24px; color:#333333; text-decoration:underline;'><b>{idx}: {hotspot['title']}</b></font><br>"
                   
-                  # 链接带样式
-                  email_content += f"<font style='font-size:16px; color:#0066cc;'>链接: <a href='{hotspot['link']}' target='_blank'>{hotspot['link']}</a></font><br>"
+                    # 链接带样式
+                    email_content += f"<font style='font-size:16px; color:#0066cc;'>链接: <a href='{hotspot['link']}' target='_blank'>{hotspot['link']}</a></font><br>"
   
-                  # 调用异步函数生成总结
-                  summary = asyncio.run(generate_summary(hotspot['link']))
+                    # 调用异步函数生成总结
+                    summary = asyncio.run(generate_summary(hotspot['link']))
                   
-                  # 总结部分带样式
-                  email_content += f"<font style='font-size:16px; color:#333333;'>总结: <span style='font-style:italic;'>{summary}</span></font><br>"
-                  email_content += '<hr style="border: 1px solid #ccc; margin: 20px 0;">'  # 使用水平线分隔不同热点数据
-              else:
+                    # 总结部分带样式
+                    email_content += f"<font style='font-size:16px; color:#333333;'>总结: <span style='font-style:italic;'>{summary}</span></font><br>"
+                    email_content += '<hr style="border: 1px solid #ccc; margin: 20px 0;">'  # 使用水平线分隔不同热点数据
+            else:
                 email_content = f"没有找到任何{subject}热点信息"
         else:
             email_content = f"未找到{subject}目标表格"
