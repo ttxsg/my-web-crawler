@@ -43,7 +43,7 @@ async def generate_summary(url: str):
         result = await crawler.arun(url=url)
 
         # 假设 `result.markdown.raw_markdown` 是你的原始markdown字符串
-        raw_markdown = result.markdown_v2.raw_markdown
+        raw_markdown = result.markdown.raw_markdown
 
         # 正则表达式提取从第一个标题到“36氪经授权发布”之前的所有正文内容
         # text_content = re.findall(r'##?.*?([\s\S]+?)(?=36氪经授权发布)', raw_markdown)
