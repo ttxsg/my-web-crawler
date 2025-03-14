@@ -33,7 +33,8 @@ urls = [
     ("https://tophub.today/n/WnBe01o371", "这些内容最容易10万+？AI 盘点今日爆款话题"),
     ("https://tophub.today/n/Y2KeDGQdNP","好用不踩雷，少数派热门科技与工具推荐"),
     ("https://tophub.today/n/NKGoRAzel6", "解锁实用利器：吾爱破解今日热门软件与工具分享"),
-    ("https://tophub.today/n/WYKd6jdaPj", "豆瓣小组精选每日更新：今天的有趣分")
+    ("https://tophub.today/n/WYKd6jdaPj", "豆瓣小组精选每日更新：今天的有趣分"),
+    ("https://tophub.today/n/rYqoXQ8vOD","Github:今日热门项目")
 ]
 
 # 定义生成总结的异步函数
@@ -41,7 +42,7 @@ async def generate_summary(url: str):
     async with AsyncWebCrawler(verbose=True) as crawler:
         result = await crawler.arun(url=url)
 
-        # 假设 `result.markdown_v2.raw_markdown` 是你的原始markdown字符串
+        # 假设 `result.markdown.raw_markdown` 是你的原始markdown字符串
         raw_markdown = result.markdown_v2.raw_markdown
 
         # 正则表达式提取从第一个标题到“36氪经授权发布”之前的所有正文内容
